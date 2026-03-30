@@ -1,14 +1,11 @@
 ---
-title: "Paper Title Number 2"
+title: "Online queries as a criterion for evaluating epidemiological status and effectiveness of COVID-19 control measures in Russia: results from Yandex.Wordstat analysis"
 collection: publications
 category: manuscripts
-permalink: /publication/2010-10-01-paper-title-number-2
-excerpt: 'This paper is about the number 2. The number 3 is left for future work.'
-date: 2010-10-01
-venue: 'Journal 1'
-slidesurl: 'https://academicpages.github.io/files/slides2.pdf'
-paperurl: 'https://academicpages.github.io/files/paper2.pdf'
-citation: 'Your Name, You. (2010). &quot;Paper Title Number 2.&quot; <i>Journal 1</i>. 1(2).'
+permalink: /publication/2022-bmjopen-covid
+excerpt: 'Analysis of smell-related Yandex search queries as a marker for COVID-19 spread across 85 Russian regions. Strong positive correlation found in 70% of regions.'
+date: 2022-07-19
+venue: 'BMJ Open'
+paperurl: 'https://doi.org/10.1136/bmjopen-2021-056716'
+citation: 'Momynaliev K., Khoroshun D., Akimkin V. (2022). &quot;Online queries as a criterion for evaluating epidemiological status and effectiveness of COVID-19 control measures in Russia.&quot; <i>BMJ Open</i>. 12(7), e056716.'
 ---
-
-The contents above will be part of a list of publications, if the user clicks the link for the publication than the contents of section will be rendered as a full page, allowing you to provide more information about the paper for the reader. When publications are displayed as a single page, the contents of the above "citation" field will automatically be included below this section in a smaller font.
