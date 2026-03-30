@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dimash Khoroshun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --bg:#0d1117;
+    --bg2:#161b22;
+    --bg3:#21262d;
+    --bg4:#30363d;
+    --text:#e6edf3;
+    --muted:#8b949e;
+    --faint:#484f58;
+    --blue:#58a6ff;
+    --blue2:#1f6feb;
+    --blue3:#388bfd;
+    --blue-bg:rgba(31,111,235,0.1);
+    --blue-border:rgba(56,139,253,0.25);
+    --border:rgba(255,255,255,0.07);
+    --border2:rgba(255,255,255,0.12);
+    --sans:'Space Grotesk',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --mono:'Space Mono',monospace;
+  }
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.7;font-weight:300;}
+  ::selection{background:rgba(88,166,255,0.2);}
+
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:0 2.5rem;height:56px;
+    display:flex;align-items:center;justify-content:space-between;
+    background:rgba(13,17,23,0.88);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-name{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--text);text-decoration:none;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--blue);}
+
+  .hero{
+    min-height:100vh;
+    display:grid;grid-template-columns:1fr 400px;
+    align-items:center;gap:4rem;
+    padding:88px 4rem 4rem;
+    max-width:1200px;margin:0 auto;
+  }
+
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    font-family:var(--mono);font-size:11px;
+    letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--blue);margin-bottom:1.5rem;
+  }
+  .hero-tag-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--blue);
+    animation:pulse 2s ease infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+
+  h1{
+    font-family:var(--sans);font-size:clamp(2.5rem,5vw,4.25rem);
+    font-weight:300;line-height:1.1;
+    color:var(--text);margin-bottom:1.5rem;
+    letter-spacing:-0.03em;
+  }
+  h1 span{color:var(--blue);font-weight:500;}
+
+  .hero-bio{font-size:15px;color:var(--muted);max-width:480px;line-height:1.8;margin-bottom:2.5rem;}
+
+  .hero-links{display:flex;flex-wrap:wrap;gap:0.6rem;}
+  .btn{
+    display:inline-flex;align-items:center;gap:0.4rem;
+    padding:0.5rem 1.1rem;
+    border:1px solid var(--border2);
+    font-family:var(--mono);font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--text);text-decoration:none;
+    background:transparent;transition:all 0.18s;
+  }
+  .btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg);}
+  .btn-primary{background:var(--blue2);border-color:var(--blue2);color:#fff;}
+  .btn-primary:hover{background:var(--blue3);border-color:var(--blue3);color:#fff;}
+
+  .card{
+    background:var(--bg2);
+    border:1px solid var(--border2);
+    padding:2rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--blue),transparent);
+  }
+
+  .card-img{
+    width:72px;height:72px;border-radius:8px;
+    object-fit:cover;border:1px solid var(--border2);
+    margin-bottom:1.5rem;display:block;
+  }
+
+  .card-rows{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.75rem;}
+  .card-row{display:flex;align-items:flex-start;gap:0.75rem;font-size:13px;}
+  .card-key{
+    font-family:var(--mono);font-size:10px;
+    color:var(--blue);letter-spacing:0.08em;
+    padding-top:3px;min-width:32px;text-transform:uppercase;
+  }
+  .card-val{color:var(--muted);line-height:1.5;}
+  .card-val b{color:var(--text);font-weight:400;}
+
+  .card-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    background:var(--bg3);border:1px solid var(--border);
+    overflow:hidden;
+  }
+  .stat{padding:0.85rem;text-align:center;border-right:1px solid var(--border);}
+  .stat:last-child{border-right:none;}
+  .stat-n{font-family:var(--sans);font-size:22px;font-weight:500;color:var(--blue);line-height:1;margin-bottom:4px;}
+  .stat-l{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--faint);}
+
+  .section-hr{border:none;border-top:1px solid var(--border);margin:0 4rem;}
+  section{padding:5rem 4rem;max-width:1200px;margin:0 auto;}
+
+  .sec-hd{display:flex;align-items:center;gap:1rem;margin-bottom:3rem;}
+  .sec-num{font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:0.1em;}
+  h2{font-family:var(--sans);font-size:1.75rem;font-weight:400;color:var(--text);letter-spacing:-0.02em;}
+
+  .pub-list{border:1px solid var(--border2);overflow:hidden;}
+  .pub-item{
+    display:grid;grid-template-columns:52px 1fr;gap:1.25rem;
+    padding:1.5rem 1.75rem;
+    border-bottom:1px solid var(--border);
+    text-decoration:none;background:var(--bg2);transition:background 0.15s;
+  }
+  .pub-item:last-child{border-bottom:none;}
+  .pub-item:hover{background:var(--bg3);}
+  .pub-yr{font-family:var(--mono);font-size:12px;color:var(--blue);padding-top:2px;}
+  .pub-title{font-size:14px;color:var(--text);line-height:1.5;margin-bottom:0.3rem;}
+  .pub-meta{font-family:var(--mono);font-size:11px;color:var(--faint);margin-bottom:0.3rem;letter-spacing:0.02em;}
+  .badge{
+    display:inline-block;padding:2px 7px;
+    font-family:var(--mono);font-size:10px;
+    letter-spacing:0.05em;margin-top:0.3rem;
+  }
+  .b-intl{background:rgba(88,166,255,0.1);color:var(--blue);border:1px solid rgba(88,166,255,0.25);}
+  .b-ru{background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid var(--border2);}
+
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border2);overflow:hidden;}
+  .edu-item{
+    padding:1.75rem;background:var(--bg2);
+    border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  }
+  .edu-item:nth-child(2n){border-right:none;}
+  .edu-yr{font-family:var(--mono);font-size:10px;color:var(--blue);letter-spacing:0.1em;margin-bottom:0.5rem;}
+  .edu-deg{font-size:14px;color:var(--text);margin-bottom:0.2rem;}
+  .edu-sch{font-size:13px;color:var(--muted);line-height:1.5;}
+
+  .award-box{border:1px solid var(--border2);}
+  .award-item{
+    display:grid;grid-template-columns:64px 1fr;gap:1.5rem;
+    padding:1.75rem;background:var(--bg2);
+    border-bottom:1px solid var(--border);
+  }
+  .award-item:last-child{border-bottom:none;}
+  .award-place{
+    font-family:var(--sans);font-size:2.25rem;font-weight:500;
+    color:var(--blue);line-height:1;padding-top:2px;
+  }
+  .award-title{font-size:14px;color:var(--text);margin-bottom:0.3rem;}
+  .award-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+  .award-link{
+    display:inline-flex;align-items:center;gap:0.3rem;
+    font-family:var(--mono);font-size:11px;
+    color:var(--blue);text-decoration:none;
+    margin-top:0.5rem;letter-spacing:0.04em;transition:opacity 0.2s;
+  }
+  .award-link:hover{opacity:0.65;}
+
+  .skills-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+    border:1px solid var(--border2);overflow:hidden;
+  }
+  .sg{
+    padding:1.4rem;background:var(--bg2);
+    border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  }
+  .sg-cat{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--blue);margin-bottom:0.65rem;}
+  .sg-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+  .sg-tag{font-size:12px;color:var(--muted);padding:2px 7px;background:var(--bg3);border:1px solid var(--border);}
+
+  footer{
+    padding:2.5rem 4rem;border-top:1px solid var(--border);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .f-name{font-family:var(--sans);font-size:14px;font-weight:400;color:var(--muted);}
+  .f-links{display:flex;gap:1.5rem;list-style:none;}
+  .f-links a{font-family:var(--mono);font-size:11px;color:var(--faint);text-decoration:none;letter-spacing:0.05em;transition:color 0.2s;}
+  .f-links a:hover{color:var(--blue);}
+
+  @keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  .hero-tag{opacity:0;animation:fu 0.5s ease 0.1s forwards;}
+  h1{opacity:0;animation:fu 0.5s ease 0.2s forwards;}
+  .hero-bio{opacity:0;animation:fu 0.5s ease 0.3s forwards;}
+  .hero-links{opacity:0;animation:fu 0.5s ease 0.4s forwards;}
+  .card{opacity:0;animation:fu 0.6s ease 0.3s forwards;}
+
+  @media(max-width:800px){
+    nav{padding:0 1.5rem;}
+    .nav-links{display:none;}
+    .hero{grid-template-columns:1fr;padding:76px 1.5rem 3rem;gap:2.5rem;}
+    section{padding:3rem 1.5rem;}
+    .section-hr{margin:0 1.5rem;}
+    .edu-grid{grid-template-columns:1fr;}
+    footer{flex-direction:column;gap:1.25rem;padding:2rem 1.5rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Dimash Khoroshun</a>
+  <ul class="nav-links">
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-tag"><span class="hero-tag-dot"></span>Researcher &amp; Data Analyst</div>
+    <h1>Dimash<br><span>Khoroshun</span></h1>
+    <p class="hero-bio">Data Analyst &amp; AI Product Developer at the National Medical Research Center for Hematology, Ministry of Health of Russia. MSc in Applied Mathematics, MIPT (2025). Research interests: AI in biomedicine, computational biology.</p>
+    <div class="hero-links">
+      <a href="https://scholar.google.com/citations?user=KimrlgEAAAAJ" class="btn btn-primary" target="_blank">Google Scholar</a>
+      <a href="https://orcid.org/0000-0002-2445-5689" class="btn" target="_blank">ORCID</a>
+      <a href="https://github.com/Dimash3228" class="btn" target="_blank">GitHub</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="data:image/jpeg;base64,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" class="card-img" alt="Dimash Khoroshun">
+    <div class="card-rows">
+      <div class="card-row"><span class="card-key">loc</span><span class="card-val">Moscow, Russia</span></div>
+      <div class="card-row"><span class="card-key">org</span><span class="card-val"><b>NMRC Hematology</b>, Ministry of Health of Russia</span></div>
+      <div class="card-row"><span class="card-key">edu</span><span class="card-val"><b>MSc</b> Applied Mathematics &amp; Physics, MIPT, 2025</span></div>
+    </div>
+    <div class="card-stats">
+      <div class="stat"><div class="stat-n">4</div><div class="stat-l">Papers</div></div>
+      <div class="stat"><div class="stat-n">8</div><div class="stat-l">Citations</div></div>
+      <div class="stat"><div class="stat-n">h=2</div><div class="stat-l">h-index</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-hr">
+
+<section id="publications">
+  <div class="sec-hd"><span class="sec-num">01</span><h2>Publications</h2></div>
+  <div class="pub-list">
+    <a class="pub-item" href="https://elibrary.ru/item.asp?id=82663667" target="_blank">
+      <span class="pub-yr">2025</span>
+      <div>
+        <div class="pub-title">Machine Learning Methods for Differential Diagnosis of Hematological Diseases: Preliminary Results</div>
+        <div class="pub-meta">Transfuziology · Vol. 26, No. 1, pp. 53–70</div>
+        <div class="pub-meta">Khoroshun D.K., Drokov M.Yu., Soloviev M.V., Aleshina O.A., Dvirnik V.N., Shishkanov D.V., Ivanov I.V.</div>
+        <span class="badge b-ru">Russian journal · EDN: ZVBLGD</span>
+      </div>
+    </a>
+    <a class="pub-item" href="https://doi.org/10.1136/bmjopen-2021-056716" target="_blank">
+      <span class="pub-yr">2022</span>
+      <div>
+        <div class="pub-title">Online queries as a criterion for evaluating epidemiological status and effectiveness of COVID-19 control measures in Russia: results from Yandex.Wordstat analysis</div>
+        <div class="pub-meta">BMJ Open · Vol. 12, No. 7, e056716</div>
+        <div class="pub-meta">Momynaliev K., Khoroshun D., Akimkin V.</div>
+        <span class="badge b-intl">International · DOI: 10.1136/bmjopen-2021-056716</span>
+      </div>
+    </a>
+    <a class="pub-item" href="https://doi.org/10.33667/2078-5631-2022-18-14-22" target="_blank">
+      <span class="pub-yr">2022</span>
+      <div>
+        <div class="pub-title">Analysis of Yandex search queries related to COVID-19 in Russian Federation</div>
+        <div class="pub-meta">Medical Alphabet · No. 14, pp. 14–22</div>
+        <div class="pub-meta">Khoroshun D.K., Momynaliev K.T., Voronin E.M., Akimkin V.G.</div>
+        <span class="badge b-ru">Russian journal · DOI: 10.33667/2078-5631-2022-18-14-22</span>
+      </div>
+    </a>
+    <a class="pub-item" href="https://doi.org/10.18565/epidem.2021.11.2.42-8" target="_blank">
+      <span class="pub-yr">2021</span>
+      <div>
+        <div class="pub-title">Olfaction-related Internet queries as a marker for assessing the epidemiological situation of SARS-CoV-2</div>
+        <div class="pub-meta">Epidemiology and Infectious Diseases · No. 2, pp. 42–48</div>
+        <div class="pub-meta">Momynaliev K.T., Khoroshun D.K., Akimkin V.G.</div>
+        <span class="badge b-ru">Russian journal · DOI: 10.18565/epidem.2021.11.2.42-8</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<hr class="section-hr">
+
+<section id="education">
+  <div class="sec-hd"><span class="sec-num">02</span><h2>Education</h2></div>
+  <div class="edu-grid">
+    <div class="edu-item">
+      <div class="edu-yr">2023 — 2025</div>
+      <div class="edu-deg">MSc, Applied Mathematics and Physics</div>
+      <div class="edu-sch">Moscow Institute of Physics and Technology (MIPT)<br>Specialization: Applied Data Analysis in Medicine</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-yr">2018 — 2022</div>
+      <div class="edu-deg">BSc, Biotechnology</div>
+      <div class="edu-sch">Moscow State University of Food Production (MGUPP)</div>
+    </div>
+    <div class="edu-item" style="border-bottom:none;">
+      <div class="edu-yr">2024</div>
+      <div class="edu-deg">Professional Development Certificate</div>
+      <div class="edu-sch">NGS Data Analysis · Vlastim LLC, Moscow · 80 academic hours</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-hr">
+
+<section id="awards">
+  <div class="sec-hd"><span class="sec-num">03</span><h2>Awards</h2></div>
+  <div class="award-box">
+    <div class="award-item">
+      <div class="award-place">2<sup style="font-size:1rem;vertical-align:super">nd</sup></div>
+      <div>
+        <div class="award-title">IBRE Public Health Hackathon 2025</div>
+        <div class="award-desc">Almaty, Kazakhstan · August 8–10, 2025<br>Project: <em>Optimizing Drug Use and Hospital Stay: Predictive Modeling from Real-World Oncohematological Data.</em><br>Stack: LightGBM, Prophet, ARIMA, LSTM, NetworkX.</div>
+        <a href="https://bioinf.institute/hack2025#winners" class="award-link" target="_blank">View results →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-hr">
+
+<section id="skills">
+  <div class="sec-hd"><span class="sec-num">04</span><h2>Skills</h2></div>
+  <div class="skills-grid">
+    <div class="sg"><div class="sg-cat">Programming</div><div class="sg-tags"><span class="sg-tag">Python</span><span class="sg-tag">SQL</span><span class="sg-tag">PostgreSQL</span></div></div>
+    <div class="sg"><div class="sg-cat">Machine Learning</div><div class="sg-tags"><span class="sg-tag">LightGBM</span><span class="sg-tag">XGBoost</span><span class="sg-tag">Random Forest</span><span class="sg-tag">Prophet</span><span class="sg-tag">LSTM</span></div></div>
+    <div class="sg"><div class="sg-cat">Bioinformatics</div><div class="sg-tags"><span class="sg-tag">NGS Analysis</span><span class="sg-tag">Olink Proteomics</span><span class="sg-tag">UK Biobank</span></div></div>
+    <div class="sg"><div class="sg-cat">Tools</div><div class="sg-tags"><span class="sg-tag">Git</span><span class="sg-tag">Jupyter</span><span class="sg-tag">RAG Systems</span><span class="sg-tag">Telegram API</span></div></div>
+    <div class="sg"><div class="sg-cat">Languages</div><div class="sg-tags"><span class="sg-tag">Russian — native</span><span class="sg-tag">English — intermediate</span></div></div>
+  </div>
+</section>
+
+<footer>
+  <span class="f-name">Dimash Khoroshun</span>
+  <ul class="f-links">
+    <li><a href="https://scholar.google.com/citations?user=KimrlgEAAAAJ" target="_blank">Scholar</a></li>
+    <li><a href="https://orcid.org/0000-0002-2445-5689" target="_blank">ORCID</a></li>
+    <li><a href="https://github.com/Dimash3228" target="_blank">GitHub</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
