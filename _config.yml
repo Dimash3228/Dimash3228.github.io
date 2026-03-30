@@ -21,7 +21,7 @@ repository               : "Dimash3228/Dimash3228.github.io"
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
-  avatar           : "profile.png"
+  avatar           : "images/photo_2026-03-30 14.33.34.jpeg"
   name             : "Dimash Khoroshun"
   pronouns         :
   bio              : "MSc in Applied Mathematics, MIPT (2025). Data Analyst at NMRC Hematology. Research interests: AI in biomedicine, computational biology."
